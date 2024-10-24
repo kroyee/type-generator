@@ -1,0 +1,32 @@
+import { Ser, Des } from "./serialize"
+{{#each imports}}
+import { {{this}} } from "./{{this}}"
+{{/each}}
+
+export class {{name}} {
+  {{#each members}}
+  {{this.name}}: {{{tstype this.type}}} = {{{this.default}}}
+  {{/each}}
+
+  static serialize(ser: Ser, data: {{name}}) {
+    {{#eachindex members}}
+    {{{tsserialize this}}}
+    {{/eachindex}}
+  }
+
+  static deserialize(des: Des) {
+    const data = new {{name}}()
+    {{#eachindex members}}
+    data.{{this.name}} = {{{tsdeserialize this}}}
+    {{/eachindex}}
+
+    return data
+  }
+  {{#eachindex members}}
+  {{#ifvariant this}}
+
+  {{> variantpartial}}
+
+  {{/ifvariant}}
+  {{/eachindex}}
+}

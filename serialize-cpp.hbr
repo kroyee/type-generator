@@ -1,0 +1,24 @@
+{{#each stdincludes}}
+#include <{{this}}>
+{{/each}}
+{{#each includes}}
+#include "{{this}}"
+{{/each}}
+#include "serialize.hpp"
+
+struct {{name}} {
+  {{#each members}}
+  {{{cpptype this.type}}} {{this.name}};
+  {{/each}}
+
+  {{name}}() = default;
+
+  {{name}}(Serialize::ReadFromBuffer& buffer) {
+    serialize(buffer);
+  }
+
+  template <typename Buffer>
+  void serialize(Buffer& buffer) {
+    buffer{{#each members}} << {{this.name}}{{/each}};
+  }
+};

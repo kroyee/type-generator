@@ -1,0 +1,16 @@
+{
+  "name": "type-generator",
+  "version": "1.0.0",
+  "description": "Generate types/classes for multiple languages from JSON",
+  "main": "index.ts",
+  "author": "Olle Samuelsson",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8"
+  }
+}

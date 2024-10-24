@@ -1,0 +1,7 @@
+.vscode
+node_modules
+*.js
+output/*
+!output/serialize.ts
+!output/serialize.hpp
+build
