@@ -1,8 +1,8 @@
 ## Simple type generator
 
-Uses handlebars to generate type for multiple languages from a common definition
+Uses handlebars to generate types for multiple languages from a common definition.
 
-Currently two pre-written templates for types with serialization in TypeScript and C++ exists
+Currently two pre-written templates for types with serialization in TypeScript and C++ exists.
 
 Handles basic types like
 
@@ -14,7 +14,7 @@ Handles basic types like
 - arrays (`std::vector` in c++)
 - variants (`std::variant` in c++, in TS represented as `{ type: number, value: string | number }`)
 
-You custom types can reference each other.
+Your custom types can reference each other.
 
 Short example:
 
@@ -46,3 +46,11 @@ No nested arrays or variant
 This means no `array<array<uint8>>` or `variant<uint8|variant<string|float>>`
 
 Keep it simple.
+
+## How to run
+
+Requires deno.
+
+Update the type definitions in main.ts and run `deno task generate`
+
+You can run this with node/npm if you want, requires transpiling.
