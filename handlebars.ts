@@ -1,5 +1,22 @@
 import Handlebars from "handlebars";
 
+function tsDefaultValue(type: string | [string]): string {
+  if (typeof type === "string") {
+    if (type.includes("|")) {
+      return "{ type: 0, value: null as any }";
+    }
+    switch (typeTS(type)) {
+      case "string":
+        return '""';
+      case "number":
+        return "0";
+      default:
+        return `new ${type}()`;
+    }
+  }
+  return "[]";
+}
+
 function getVariantType(type: string) {
   return Object.keys(
     Object.fromEntries(type.split("|").map((t) => [typeTS(t), typeTS(t)]))
@@ -202,7 +219,6 @@ deserializeVariant${member.hbr_index}(des: Des) {
 export type Member = {
   name: string;
   type: string | [string];
-  default: string;
 };
 
 let initDone = false;
@@ -213,6 +229,7 @@ export function init() {
   Handlebars.registerHelper("tsserialize", tsSerialize);
   Handlebars.registerHelper("tsdeserialize", tsDeserialize);
   Handlebars.registerHelper("tsvariant", tsVariant);
+  Handlebars.registerHelper("tsdefault", tsDefaultValue);
 
   Handlebars.registerPartial("variantpartial", "{{{tsvariant this}}}");
 

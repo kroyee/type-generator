@@ -1,11 +1,11 @@
-import { Ser, Des } from "./serialize"
+import { Ser, Des } from "./serialize.ts"
 {{#each imports}}
-import { {{this}} } from "./{{this}}"
+import { {{this}} } from "./{{this}}.ts"
 {{/each}}
 
 export class {{name}} {
   {{#each members}}
-  {{this.name}}: {{{tstype this.type}}} = {{{this.default}}}
+  {{this.name}}: {{{tstype this.type}}} = {{{tsdefault this.type}}}
   {{/each}}
 
   static serialize(ser: Ser, data: {{name}}) {

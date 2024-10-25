@@ -8,19 +8,19 @@ generator.addTemplate("./serialize-ts.hbr", "ts");
 const BarDefinition: TypeDefinition = {
   name: "Bar",
   members: [
-    { name: "name", type: "string", default: '""' },
-    { name: "id", type: "uint8|string", default: "{ type: 0, value: 0 }" },
-    { name: "foo", type: "Foo", default: "new Foo()" },
-    { name: "values", type: ["Foo|uint8|uint16"], default: "[]" },
+    { name: "name", type: "string" },
+    { name: "id", type: "uint8|string" },
+    { name: "foo", type: "Foo" },
+    { name: "values", type: ["Foo|uint8|uint16"] },
   ],
 };
 
 const FooDefinition: TypeDefinition = {
   name: "Foo",
   members: [
-    { name: "name", type: "string", default: '""' },
-    { name: "id", type: "uint16", default: "0" },
-    { name: "values", type: ["uint8"], default: "[]" },
+    { name: "name", type: "string" },
+    { name: "id", type: "uint16" },
+    { name: "values", type: ["uint8"] },
   ],
 };
 
